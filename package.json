@@ -1,0 +1,23 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Weather app using Leaflet and OpenWeatherMap API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weatherapp",
+    "leaflet",
+    "openweathermap",
+    "javascript",
+    "typescript",
+    "weather",
+    "api"
+  ],
+  "author": "Agustina Corvo <aguscorvo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
