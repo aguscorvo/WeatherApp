@@ -6,9 +6,10 @@ export let locationInput: HTMLInputElement =
 let searchBtn: HTMLElement = document.querySelector('.search');
 let deleteBtn: HTMLElement = document.querySelector('.delete');
 
-searchBtn.addEventListener('click', () =>
-  getWeatherByLocation(locationInput.value)
+searchBtn.addEventListener(
+  'click',
+  (): Promise<void> => getWeatherByLocation(locationInput.value)
 );
-deleteBtn.addEventListener('click', () => deleteContent());
+deleteBtn.addEventListener('click', (): void => deleteContent());
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);

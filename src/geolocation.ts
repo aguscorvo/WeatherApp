@@ -1,5 +1,5 @@
 import { locationInput } from './main';
-import { API_URL, API_KEY, API_LANG } from './weather';
+import { API_URL, API_KEY } from './weather';
 
 export const successCallback = position => {
   console.log(position);
@@ -15,7 +15,7 @@ export const errorCallback = error => {
 
 const getLocationName = async (position): Promise<void> => {
   const response = await fetch(
-    `${API_URL}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}&lang=${API_LANG}`
+    `${API_URL}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}`
   );
   const data = await response.json();
   locationInput.value = `${data.name}, ${data.sys.country}`;

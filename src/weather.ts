@@ -1,22 +1,21 @@
 import { locationInput } from './main.js';
 import { roundToOneDigitAfterComma } from './utils.js';
 
-export const API_KEY: String = '58028712b6a3c7b033e2d4752aab2b37';
-export const API_URL: String =
+export const API_KEY: string = '58028712b6a3c7b033e2d4752aab2b37';
+export const API_URL: string =
   'https://api.openweathermap.org/data/2.5/weather?';
-const API_UNITS: String = 'metric';
-export const API_LANG: String = 'sp';
+const API_UNITS: string = 'metric';
 let weatherContainer: HTMLElement =
   document.querySelector('.weather-container');
 
-export const getWeatherByLocation = async (location: String): Promise<void> => {
+export const getWeatherByLocation = async (location: string): Promise<void> => {
   try {
-    const response = await fetch(
-      `${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}&lang=${API_LANG}`
+    const response: Response = await fetch(
+      `${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}`
     );
-    const data = await response.json();
+    const data: JSON = await response.json();
     console.log(data);
-    const weatherNode = createWeatherNode(data);
+    const weatherNode: HTMLDivElement = createWeatherNode(data);
     weatherContainer.append(weatherNode);
   } catch (error) {
     console.log(`Fetch error ${error}`);
@@ -36,19 +35,18 @@ const createWeatherNode = (data): HTMLDivElement => {
   description.textContent = data.weather[0].description;
   const temperature: HTMLHeadingElement = document.createElement('h2');
   temperature.textContent = `${roundToOneDigitAfterComma(data.main.temp)}°C`;
-  const realFeel: HTMLParagraphElement = document.createElement('p');
-  realFeel.textContent = `RealFeel: ${roundToOneDigitAfterComma(
+
+  main.append(icon, description, temperature);
+  const feelsLike: HTMLParagraphElement = document.createElement('p');
+  feelsLike.textContent = `Feels like: ${roundToOneDigitAfterComma(
     data.main.feels_like
   )}°C`;
-  main.append(icon, description, temperature, realFeel);
   const extraInfo: HTMLDivElement = document.createElement('div');
   const humidity: HTMLParagraphElement = document.createElement('p');
-  humidity.textContent = `Humedad: ${data.main.humidity}%`;
+  humidity.textContent = `Humidity: ${data.main.humidity}%`;
   const wind: HTMLParagraphElement = document.createElement('p');
-  wind.textContent = `Viento: ${roundToOneDigitAfterComma(
-    data.wind.speed
-  )} km/h`;
-  extraInfo.append(humidity, wind);
+  wind.textContent = `Wind: ${roundToOneDigitAfterComma(data.wind.speed)} km/h`;
+  extraInfo.append(feelsLike, humidity, wind);
 
   //se agregan ambos contenedores al contenedor principal
   container.append(main, extraInfo);

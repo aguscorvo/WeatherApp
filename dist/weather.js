@@ -3,11 +3,10 @@ import { roundToOneDigitAfterComma } from './utils.js';
 export const API_KEY = '58028712b6a3c7b033e2d4752aab2b37';
 export const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 const API_UNITS = 'metric';
-export const API_LANG = 'sp';
 let weatherContainer = document.querySelector('.weather-container');
 export const getWeatherByLocation = async (location) => {
     try {
-        const response = await fetch(`${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}&lang=${API_LANG}`);
+        const response = await fetch(`${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}`);
         const data = await response.json();
         console.log(data);
         const weatherNode = createWeatherNode(data);
@@ -29,15 +28,15 @@ const createWeatherNode = (data) => {
     description.textContent = data.weather[0].description;
     const temperature = document.createElement('h2');
     temperature.textContent = `${roundToOneDigitAfterComma(data.main.temp)}°C`;
-    const realFeel = document.createElement('p');
-    realFeel.textContent = `RealFeel: ${roundToOneDigitAfterComma(data.main.feels_like)}°C`;
-    main.append(icon, description, temperature, realFeel);
+    main.append(icon, description, temperature);
+    const feelsLike = document.createElement('p');
+    feelsLike.textContent = `Feels like: ${roundToOneDigitAfterComma(data.main.feels_like)}°C`;
     const extraInfo = document.createElement('div');
     const humidity = document.createElement('p');
-    humidity.textContent = `Humedad: ${data.main.humidity}%`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
     const wind = document.createElement('p');
-    wind.textContent = `Viento: ${roundToOneDigitAfterComma(data.wind.speed)} km/h`;
-    extraInfo.append(humidity, wind);
+    wind.textContent = `Wind: ${roundToOneDigitAfterComma(data.wind.speed)} km/h`;
+    extraInfo.append(feelsLike, humidity, wind);
     //se agregan ambos contenedores al contenedor principal
     container.append(main, extraInfo);
     return container;
