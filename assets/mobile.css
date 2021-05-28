@@ -29,6 +29,17 @@ main {
   height: 200px;
 }
 
+.weather-container .container {
+  background-color: rgba(255, 255, 255, 0.356);
+  border-radius: 7px;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100px;
+}
+
 .map-container {
   grid-row: 3/4;
   background-color: pink;
