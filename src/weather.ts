@@ -1,9 +1,11 @@
-import { roundToOneDigitAfterComma } from './utils';
+import { locationInput } from './main.js';
+import { roundToOneDigitAfterComma } from './utils.js';
 
-const API_KEY = '58028712b6a3c7b033e2d4752aab2b37';
-const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
-const API_UNITS = 'metric';
-const API_LANG = 'sp';
+export const API_KEY: String = '58028712b6a3c7b033e2d4752aab2b37';
+export const API_URL: String =
+  'https://api.openweathermap.org/data/2.5/weather?';
+const API_UNITS: String = 'metric';
+export const API_LANG: String = 'sp';
 let weatherContainer: HTMLElement =
   document.querySelector('.weather-container');
 
@@ -21,7 +23,7 @@ export const getWeatherByLocation = async (location: String): Promise<void> => {
   }
 };
 
-const createWeatherNode = data => {
+const createWeatherNode = (data): HTMLDivElement => {
   //contenedor principal
   const container: HTMLDivElement = document.createElement('div');
   container.className = 'container';
@@ -40,17 +42,13 @@ const createWeatherNode = data => {
   )}°C`;
   main.append(icon, description, temperature, realFeel);
   const extraInfo: HTMLDivElement = document.createElement('div');
-  const tempMin: HTMLParagraphElement = document.createElement('p');
-  tempMin.textContent = `Min: ${data.main.temp_min}°C`;
-  const tempMax: HTMLParagraphElement = document.createElement('p');
-  tempMin.textContent = `Min: ${data.main.temp_min}°C`;
   const humidity: HTMLParagraphElement = document.createElement('p');
   humidity.textContent = `Humedad: ${data.main.humidity}%`;
   const wind: HTMLParagraphElement = document.createElement('p');
   wind.textContent = `Viento: ${roundToOneDigitAfterComma(
     data.wind.speed
   )} km/h`;
-  extraInfo.append(tempMin, tempMax, humidity, wind);
+  extraInfo.append(humidity, wind);
 
   //se agregan ambos contenedores al contenedor principal
   container.append(main, extraInfo);
@@ -58,9 +56,10 @@ const createWeatherNode = data => {
   return container;
 };
 
-export const deleteContent = () => {
+export const deleteContent = (): void => {
   while (weatherContainer.firstChild) {
     const toDelete = weatherContainer.firstChild;
     weatherContainer.removeChild(toDelete);
   }
+  locationInput.value = '';
 };
