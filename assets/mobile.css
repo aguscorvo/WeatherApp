@@ -1,3 +1,12 @@
+:root {
+  --font: 'Lato', sans-serif;
+  --color-white: #f8f1f1;
+  --color-blue: #11698e;
+  --color-dark-blue: #19456b;
+  --color-green: #16c79a;
+  --border-radius: 7px;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -9,29 +18,116 @@ html {
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to right bottom,
+    #19456b,
+    #184c72,
+    #175279,
+    #16597f,
+    #146086,
+    #0d6b8f,
+    #057698,
+    #0081a0,
+    #0093aa,
+    #00a6ac,
+    #00b7a6,
+    #16c79a
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: var(--font);
+  color: var(--color-white);
 }
 
 main {
   display: grid;
-  grid-template-rows: 200px repeat(2, auto);
+  grid-template-rows: 320px repeat(2, auto);
   justify-content: center;
+  height: 100%;
+  /* width: 100%; */
 }
+
+/* INPUT CONTAINER */
 
 .input-container {
   grid-row: 1/2;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
 }
+
+h1 {
+  margin-top: 5px;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.location {
+  margin-top: 10px;
+  outline: none;
+  padding: 10px;
+  font-size: 1.8rem;
+  border-radius: var(--border-radius);
+  border: var(--color-white);
+  margin-bottom: 15px;
+}
+
+.buttons-container {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+button {
+  display: inline-block;
+  border-radius: var(--border-radius);
+  padding: 4px;
+  width: fit-content;
+  border-color: white;
+  width: 45px;
+  height: 45px;
+}
+
+.search button {
+  margin-right: 5px;
+  background-color: var(--color-green);
+  border: var(--color-white) 2px solid;
+}
+
+.search button img,
+.delete button img {
+  width: 30px;
+}
+
+.search button:hover {
+  background-color: #7cd1bc;
+}
+
+.delete button {
+  background-color: var(--color-blue);
+  border: var(--color-white) 2px solid;
+}
+
+/* WEATHER CONTAINER */
 
 .weather-container {
   grid-row: 2/3;
-  background-color: palegreen;
-  height: 200px;
+  /* background-color: palegreen; */
+  height: fit-content;
 }
 
 .weather-container .container {
   background-color: rgba(255, 255, 255, 0.356);
-  border-radius: 7px;
+  border-radius: var(--border-radius);
   display: inline-flex;
   flex-direction: column;
 }
@@ -40,9 +136,20 @@ img {
   width: 100px;
 }
 
+/* MAP CONTAINER */
+
 .map-container {
   grid-row: 3/4;
-  background-color: pink;
-  height: 100vh;
-  width: 100vw;
+  /* background-color: pink; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#map {
+  width: 95vw;
+  height: 550px;
+  border-radius: var(--border-radius);
 }

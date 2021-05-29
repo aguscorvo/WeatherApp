@@ -10,6 +10,11 @@
       content="Weather app using Leaflet and OpenWeatherMap API"
     />
     <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/mobile.css" />
     <link
       rel="stylesheet"
@@ -21,6 +26,17 @@
       href="./assets/desktop.css"
       media="screen and (min-width: 800px)"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
   </head>
   <body>
     <main>
@@ -30,8 +46,16 @@
           Type the city/country of your choice or drag the marker in the map
         </h2>
         <input type="text" class="location" />
-        <button class="search">Search</button>
-        <button class="delete">Delete</button>
+        <div class="buttons-container">
+          <div class="search">
+            <button class="search">
+              <img src="./assets/icons/search_white_36dp.svg"></img>
+            </button>
+          </div>
+          <div class="delete">
+            <button class="delete"><img src="./assets/icons/delete_white_36dp.svg" alt=""></button>
+          </div>
+        </div>
       </div>
       <section class="weather-container"></section>
       <div class="map-container">
