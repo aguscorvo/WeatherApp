@@ -16,7 +16,7 @@ export const getWeatherByLocation = async (location: string): Promise<void> => {
     const data: JSON = await response.json();
     console.log(data);
     const weatherNode: HTMLDivElement = createWeatherNode(data, location);
-    weatherContainer.append(weatherNode);
+    weatherContainer.prepend(weatherNode);
   } catch (error) {
     console.log(`Fetch error ${error}`);
   }

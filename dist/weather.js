@@ -10,7 +10,7 @@ export const getWeatherByLocation = async (location) => {
         const data = await response.json();
         console.log(data);
         const weatherNode = createWeatherNode(data, location);
-        weatherContainer.append(weatherNode);
+        weatherContainer.prepend(weatherNode);
     }
     catch (error) {
         console.log(`Fetch error ${error}`);
@@ -20,6 +20,10 @@ const createWeatherNode = (data, location) => {
     //contenedor principal
     const container = document.createElement('div');
     container.className = 'container';
+    // // mainInfo
+    // const main: HTMLDivElement = document.createElement('div');
+    // main.className = 'main';
+    // const container1: HTMLDivElement = document.createElement('div');
     const title = document.createElement('h3');
     title.textContent = `Current weather in ${location}`;
     const icon = document.createElement('img');
