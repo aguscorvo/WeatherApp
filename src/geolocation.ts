@@ -1,9 +1,11 @@
-import { locationInput } from './main';
+import { locationInput, map, marker } from './main';
+import { updateMarkerByGeolocation } from './map';
 import { API_URL, API_KEY } from './weather';
 
 export const successCallback = position => {
   console.log(position);
   getLocationName(position);
+  updateMarkerByGeolocation(map, marker, position);
 };
 
 export const errorCallback = error => {

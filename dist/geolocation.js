@@ -1,8 +1,10 @@
-import { locationInput } from './main.js';
+import { locationInput, map, marker } from './main.js';
+import { updateMarkerByGeolocation } from './map.js';
 import { API_URL, API_KEY } from './weather.js';
 export const successCallback = position => {
   console.log(position);
   getLocationName(position);
+  updateMarkerByGeolocation(map, marker, position);
 };
 export const errorCallback = error => {
   if (error.code == error.PERMISSION_DENIED) {

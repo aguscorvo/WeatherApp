@@ -20,10 +20,6 @@ const createWeatherNode = (data, location) => {
     //contenedor principal
     const container = document.createElement('div');
     container.className = 'container';
-    // // mainInfo
-    // const main: HTMLDivElement = document.createElement('div');
-    // main.className = 'main';
-    // const container1: HTMLDivElement = document.createElement('div');
     const title = document.createElement('h3');
     title.textContent = `Current weather in ${location}`;
     const icon = document.createElement('img');
