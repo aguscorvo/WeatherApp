@@ -15,16 +15,16 @@ export const getWeatherByLocation = async (location: string): Promise<void> => {
     );
     const data: JSON = await response.json();
     console.log(data);
-    const weatherNode: HTMLDivElement = createWeatherNode(data, location);
+    const weatherNode: HTMLElement = createWeatherNode(data, location);
     weatherContainer.prepend(weatherNode);
   } catch (error) {
     console.log(`Fetch error ${error}`);
   }
 };
 
-const createWeatherNode = (data, location: string): HTMLDivElement => {
+const createWeatherNode = (data, location: string): HTMLElement => {
   //contenedor principal
-  const container: HTMLDivElement = document.createElement('div');
+  const container: HTMLElement = document.createElement('article');
   container.className = 'container';
 
   const title: HTMLHeadingElement = document.createElement('h3');

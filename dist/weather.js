@@ -18,7 +18,7 @@ export const getWeatherByLocation = async (location) => {
 };
 const createWeatherNode = (data, location) => {
     //contenedor principal
-    const container = document.createElement('div');
+    const container = document.createElement('article');
     container.className = 'container';
     const title = document.createElement('h3');
     title.textContent = `Current weather in ${location}`;

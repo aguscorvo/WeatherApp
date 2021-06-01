@@ -6,6 +6,8 @@
   --color-green: #16c79a;
   --border-radius: 7px;
   --padding: 25px;
+  --padding-tablet: 40px;
+  --padding-desktop: 50px;
 }
 
 * {
@@ -19,7 +21,7 @@ html {
 }
 
 body {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-image: linear-gradient(
     to right bottom,
@@ -48,7 +50,7 @@ main {
   grid-template-rows: repeat(3, auto);
   justify-content: center;
   height: 100%;
-  /* width: 100%; */
+  align-self: center;
 }
 
 /* INTRO CONTAINER */
@@ -159,7 +161,7 @@ button {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: var(--border-radius);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 23px auto 60px;
   padding: 15px;
   font-size: 1.7rem;
@@ -169,7 +171,7 @@ button {
 
 /* title */
 .container h3 {
-  grid-column: 1/6;
+  grid-column: 1/4;
   grid-row: 1;
   font-size: 1.7rem;
 }
@@ -195,7 +197,7 @@ button {
 .feelsLike,
 .humidity,
 .wind {
-  grid-column: 2/6;
+  grid-column: 2/4;
   justify-self: end;
 }
 
@@ -221,7 +223,6 @@ button {
 
 .map-container {
   grid-row: 3/4;
-  /* background-color: pink; */
   height: 100%;
   width: 100vw;
   display: flex;
@@ -230,7 +231,7 @@ button {
 }
 
 #map {
-  width: 95vw;
+  width: 100%;
   height: 550px;
   border-radius: var(--border-radius);
 }
