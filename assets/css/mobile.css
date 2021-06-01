@@ -114,23 +114,22 @@ button {
   height: 45px;
 }
 
-.search button {
+.search-container button {
   margin-right: 12px;
   background-color: var(--color-green);
   border: var(--color-white) 2px solid;
 }
 
-.search button img,
-.delete button img {
+button img {
   width: 30px;
 }
 
-.search button:hover,
-.search button:active {
+.search:hover,
+.search:active {
   background-color: #7cd1bc;
 }
 
-.delete button {
+.delete-container button {
   background-color: var(--color-blue);
   border: var(--color-white) 2px solid;
 }
@@ -154,6 +153,7 @@ button {
 .weather-container {
   grid-row: 2/3;
   height: fit-content;
+  height: -moz-fit-content;
   padding: var(--padding);
 }
 

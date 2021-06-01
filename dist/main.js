@@ -2,14 +2,22 @@ import { getWeatherByLocation, deleteContent, API_KEY } from './weather.js';
 import { successCallback, errorCallback } from './geolocation.js';
 // import L from 'leaflet';
 import { updateMarkerByLocation } from './map.js';
+import { getScreenWidth, spaceAvailable } from './utils.js';
+let weatherNodeCounter = 0;
 export let locationInput = document.querySelector('.location');
 let searchBtn = document.querySelector('.search');
 let deleteBtn = document.querySelector('.delete');
 searchBtn.addEventListener('click', () => {
-  getWeatherByLocation(locationInput.value);
-  updateMarkerByLocation(map, marker, locationInput.value);
+  if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+    getWeatherByLocation(locationInput.value);
+    updateMarkerByLocation(map, marker, locationInput.value);
+    weatherNodeCounter++;
+  }
 });
-deleteBtn.addEventListener('click', () => deleteContent());
+deleteBtn.addEventListener('click', () => {
+  deleteContent();
+  weatherNodeCounter = 0;
+});
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 //Mapa
 export let map = L.map('map', {
@@ -22,40 +30,40 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 //Se obtienen capas de temperatura, nubes, precipitaciones y viento
-export let temp = L.tileLayer(
+let temp = L.tileLayer(
   `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
   {
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      'Weather from <a href="https://openweathermap.org/">OpenWeatherMap</a>',
   }
 ).addTo(map);
-export let clouds = L.tileLayer(
+let clouds = L.tileLayer(
   `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
   {
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      'Weather from <a href="https://openweathermap.org/">OpenWeatherMap</a>',
   }
 );
-export let precipitation = L.tileLayer(
+let precipitation = L.tileLayer(
   `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
   {
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      'Weather from <a href="https://openweathermap.org/">OpenWeatherMap</a>',
   }
 );
-export let wind = L.tileLayer(
+let wind = L.tileLayer(
   `https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
   {
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      'Weather from <a href="https://openweathermap.org/">OpenWeatherMap</a>',
   }
 );
-export let none = L.tileLayer('');
-var baseMaps = {
+let none = L.tileLayer('');
+let baseMaps = {
   Temperature: temp,
+  'Wind speed': wind,
   Clouds: clouds,
   Precipitation: precipitation,
-  Wind: wind,
   None: none,
 };
 //Se agrega control de capas al mapa

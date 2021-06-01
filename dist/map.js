@@ -2,7 +2,7 @@ import { API_URL, API_KEY } from './weather.js';
 export const updateMarkerByGeolocation = (map, marker, position) => {
   map.setView([position.coords.latitude, position.coords.longitude], 3);
   marker.setLatLng([position.coords.latitude, position.coords.longitude]);
-  marker.bindPopup('Estás acá');
+  marker.bindPopup('Your location');
   marker.openPopup();
 };
 export const updateMarkerByLocation = async (map, marker, location) => {

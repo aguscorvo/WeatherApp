@@ -7,7 +7,7 @@ export const updateMarkerByGeolocation = (
 ) => {
   map.setView([position.coords.latitude, position.coords.longitude], 3);
   marker.setLatLng([position.coords.latitude, position.coords.longitude]);
-  marker.bindPopup('Estás acá');
+  marker.bindPopup('Your location');
   marker.openPopup();
 };
 
