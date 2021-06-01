@@ -33,7 +33,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 export let temp = L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${API_KEY}`, {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     
-});
+}).addTo(map);
 
 export let clouds = L.tileLayer(`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`, {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -53,11 +53,11 @@ export let wind = L.tileLayer(`https://tile.openweathermap.org/map/wind_new/{z}/
 export let none = L.tileLayer('');
 
 var baseMaps = {
-  "None": none,
   "Temperature": temp,
   "Clouds": clouds,
   "Precipitation": precipitation,
-  "Wind": wind
+  "Wind": wind,
+  "None": none
 }
 
 //Se agrega control de capas al mapa
