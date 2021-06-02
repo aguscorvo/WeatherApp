@@ -21,9 +21,8 @@ export const updateMarkerByLocation = async (
       `${API_URL}q=${location}&appid=${API_KEY}`
     );
     const data = await response.json();
-    map.setView([data.coord.lat, data.coord.lon], 3);
+    map.setView([data.coord.lat, data.coord.lon]);
     marker.setLatLng([data.coord.lat, data.coord.lon]);
-    marker.closePopup();
   } catch (error) {
     console.log(`Fetch error ${error}`);
   }

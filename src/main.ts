@@ -1,8 +1,8 @@
-import { getWeatherByLocation, deleteContent, API_KEY } from './weather.js';
-import { successCallback, errorCallback } from './geolocation.js';
+import { getWeatherByLocation, deleteContent, API_KEY } from './weather';
+import { successCallback, errorCallback, getLocationNameInput } from './geolocation';
 import L from 'leaflet';
-import { updateMarkerByLocation } from './map.js';
-import { getScreenWidth, spaceAvailable } from './utils.js';
+import { updateMarkerByLocation } from './map';
+import { getScreenWidth, spaceAvailable } from './utils';
 
 let weatherNodeCounter: number = 0;
 
@@ -85,3 +85,13 @@ let baseMaps = {
 L.control.layers(baseMaps).addTo(map);
 
 export let marker = L.marker([-33, -56]).addTo(map);
+
+//Se obtienen nuevos datos al hacer click en el mapa
+function getNewLocation(new_p) {
+    console.log (new_p);
+    map.setView([new_p.latlng.lat, new_p.latlng.lng]);
+    marker.setLatLng([new_p.latlng.lat, new_p.latlng.lng]);
+    getLocationNameInput(new_p.latlng.lat, new_p.latlng.lng);
+  }
+
+map.on('click', getNewLocation);

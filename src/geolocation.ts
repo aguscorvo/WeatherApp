@@ -22,3 +22,20 @@ const getLocationName = async (position): Promise<void> => {
   const data = await response.json();
   locationInput.value = `${data.name}, ${data.sys.country}`;
 };
+
+export const getLocationNameInput = async (latitude, longitude): Promise<void> => {
+  const response = await fetch(
+    `${API_URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+  );
+  const data = await response.json();
+  if(data.sys.country !== undefined){
+    locationInput.value = `${data.name}, ${data.sys.country}`;
+    marker.bindPopup(`${data.name}, ${data.sys.country}`);
+    marker.openPopup();
+  }else{
+    locationInput.value = '';
+    marker.bindPopup('Undefined location. Try again.');
+    marker.openPopup();
+  }
+  
+};

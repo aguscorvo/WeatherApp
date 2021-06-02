@@ -1,4 +1,3 @@
-import { locationInput } from './main.js';
 import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils.js';
 export const API_KEY = '58028712b6a3c7b033e2d4752aab2b37';
 export const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -47,5 +46,4 @@ export const deleteContent = () => {
         const toDelete = weatherContainer.firstChild;
         weatherContainer.removeChild(toDelete);
     }
-    locationInput.value = '';
 };

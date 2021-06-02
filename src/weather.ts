@@ -1,5 +1,5 @@
 import { locationInput } from './main.js';
-import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils.js';
+import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils';
 
 export const API_KEY: string = '58028712b6a3c7b033e2d4752aab2b37';
 export const API_URL: string =
@@ -67,5 +67,4 @@ export const deleteContent = (): void => {
     const toDelete = weatherContainer.firstChild;
     weatherContainer.removeChild(toDelete);
   }
-  locationInput.value = '';
 };
