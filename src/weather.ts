@@ -1,4 +1,8 @@
-import { locationInput } from './main.js';
+import {
+  locationInput,
+  setWeatherNodeCounter,
+  weatherNodeCounter,
+} from './main.js';
 import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils';
 
 export const API_KEY: string = '58028712b6a3c7b033e2d4752aab2b37';
@@ -8,7 +12,9 @@ const API_UNITS: string = 'metric';
 let weatherContainer: HTMLElement =
   document.querySelector('.weather-container');
 
-export const getWeatherByLocation = async (location: string): Promise<void> => {
+export const getWeatherByLocation = async (
+  location: string | Promise<string>
+): Promise<void> => {
   try {
     const response: Response = await fetch(
       `${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}`
@@ -17,12 +23,16 @@ export const getWeatherByLocation = async (location: string): Promise<void> => {
     console.log(data);
     const weatherNode: HTMLElement = createWeatherNode(data, location);
     weatherContainer.prepend(weatherNode);
+    setWeatherNodeCounter(weatherNodeCounter + 1);
   } catch (error) {
     console.log(`Fetch error ${error}`);
   }
 };
 
-const createWeatherNode = (data, location: string): HTMLElement => {
+const createWeatherNode = (
+  data,
+  location: string | Promise<string>
+): HTMLElement => {
   //contenedor principal
   const container: HTMLElement = document.createElement('article');
   container.className = 'container';
@@ -67,4 +77,6 @@ export const deleteContent = (): void => {
     const toDelete = weatherContainer.firstChild;
     weatherContainer.removeChild(toDelete);
   }
+  setWeatherNodeCounter(0);
+  locationInput.value = '';
 };

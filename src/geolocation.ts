@@ -1,6 +1,12 @@
-import { locationInput, map, marker } from './main';
+import {
+  locationInput,
+  map,
+  marker,
+  setWeatherNodeCounter,
+  weatherNodeCounter,
+} from './main';
 import { updateMarkerByGeolocation } from './map';
-import { API_URL, API_KEY } from './weather';
+import { API_URL, API_KEY, getWeatherByLocation } from './weather';
 
 export const successCallback = position => {
   console.log(position);
@@ -15,27 +21,31 @@ export const errorCallback = error => {
   }
 };
 
-const getLocationName = async (position): Promise<void> => {
+const getLocationName = async position => {
   const response = await fetch(
     `${API_URL}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}`
   );
   const data = await response.json();
   locationInput.value = `${data.name}, ${data.sys.country}`;
+  getWeatherByLocation(locationInput.value);
+  //falta manejo de errores
 };
 
-export const getLocationNameInput = async (latitude, longitude): Promise<void> => {
+export const getLocationFromMap = async (
+  latitude,
+  longitude
+): Promise<void> => {
   const response = await fetch(
     `${API_URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
   );
   const data = await response.json();
-  if(data.sys.country !== undefined){
+  if (data.sys.country !== undefined) {
     locationInput.value = `${data.name}, ${data.sys.country}`;
     marker.bindPopup(`${data.name}, ${data.sys.country}`);
     marker.openPopup();
-  }else{
+  } else {
     locationInput.value = '';
     marker.bindPopup('Undefined location. Try again.');
     marker.openPopup();
   }
-  
 };

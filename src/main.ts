@@ -1,10 +1,19 @@
 import { getWeatherByLocation, deleteContent, API_KEY } from './weather';
-import { successCallback, errorCallback, getLocationNameInput } from './geolocation';
+import {
+  successCallback,
+  errorCallback,
+  getLocationFromMap,
+} from './geolocation';
 import L from 'leaflet';
 import { updateMarkerByLocation } from './map';
 import { getScreenWidth, spaceAvailable } from './utils';
 
-let weatherNodeCounter: number = 0;
+export let weatherNodeCounter: number = 0;
+
+export const setWeatherNodeCounter = (num: number) => {
+  weatherNodeCounter = num;
+  console.log(weatherNodeCounter);
+};
 
 export let locationInput: HTMLInputElement =
   document.querySelector('.location');
@@ -15,13 +24,9 @@ searchBtn.addEventListener('click', () => {
   if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
     getWeatherByLocation(locationInput.value);
     updateMarkerByLocation(map, marker, locationInput.value);
-    weatherNodeCounter++;
   }
 });
-deleteBtn.addEventListener('click', (): void => {
-  deleteContent();
-  weatherNodeCounter = 0;
-});
+deleteBtn.addEventListener('click', (): void => deleteContent());
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
@@ -87,11 +92,10 @@ L.control.layers(baseMaps).addTo(map);
 export let marker = L.marker([-33, -56]).addTo(map);
 
 //Se obtienen nuevos datos al hacer click en el mapa
-function getNewLocation(new_p) {
-    console.log (new_p);
-    map.setView([new_p.latlng.lat, new_p.latlng.lng]);
-    marker.setLatLng([new_p.latlng.lat, new_p.latlng.lng]);
-    getLocationNameInput(new_p.latlng.lat, new_p.latlng.lng);
-  }
+function getNewLocation(newPosition) {
+  map.setView([newPosition.latlng.lat, newPosition.latlng.lng]);
+  marker.setLatLng([newPosition.latlng.lat, newPosition.latlng.lng]);
+  getLocationFromMap(newPosition.latlng.lat, newPosition.latlng.lng);
+}
 
 map.on('click', getNewLocation);
