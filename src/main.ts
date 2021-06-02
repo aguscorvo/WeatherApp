@@ -1,4 +1,9 @@
-import { getWeatherByLocation, deleteContent, API_KEY } from './weather';
+import {
+  getWeatherByLocation,
+  deleteContent,
+  API_KEY,
+  deleteWeatherNode,
+} from './weather';
 import {
   successCallback,
   errorCallback,
@@ -22,6 +27,10 @@ let deleteBtn: HTMLElement = document.querySelector('.delete');
 
 searchBtn.addEventListener('click', () => {
   if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+    getWeatherByLocation(locationInput.value);
+    updateMarkerByLocation(map, marker, locationInput.value);
+  } else {
+    deleteWeatherNode();
     getWeatherByLocation(locationInput.value);
     updateMarkerByLocation(map, marker, locationInput.value);
   }

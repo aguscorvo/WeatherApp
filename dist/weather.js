@@ -58,6 +58,11 @@ const createWeatherNode = (data, location) => {
   );
   return container;
 };
+export const deleteWeatherNode = () => {
+  const toDelete = weatherContainer.lastChild;
+  weatherContainer.removeChild(toDelete);
+  setWeatherNodeCounter(weatherNodeCounter - 1);
+};
 export const deleteContent = () => {
   while (weatherContainer.firstChild) {
     const toDelete = weatherContainer.firstChild;

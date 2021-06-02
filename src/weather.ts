@@ -72,9 +72,15 @@ const createWeatherNode = (
   return container;
 };
 
+export const deleteWeatherNode = (): void => {
+  const toDelete: ChildNode = weatherContainer.lastChild;
+  weatherContainer.removeChild(toDelete);
+  setWeatherNodeCounter(weatherNodeCounter - 1);
+};
+
 export const deleteContent = (): void => {
   while (weatherContainer.firstChild) {
-    const toDelete = weatherContainer.firstChild;
+    const toDelete: ChildNode = weatherContainer.firstChild;
     weatherContainer.removeChild(toDelete);
   }
   setWeatherNodeCounter(0);

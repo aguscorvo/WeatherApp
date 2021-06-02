@@ -4,7 +4,10 @@ export const getScreenWidth = () => screen.width;
 export const spaceAvailable = (weatherNodeCounter, screenWidth) => {
     //mobile
     if (screenWidth < 720)
-        return true;
+        if (weatherNodeCounter < 2)
+            return true;
+        else
+            return false;
     // tablet
     if (screenWidth >= 720 && screenWidth < 1050) {
         if (weatherNodeCounter < 1)
