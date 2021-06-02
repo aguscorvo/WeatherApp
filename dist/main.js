@@ -37,6 +37,9 @@ export let map = L.map('map', {
   minZoom: 2,
   maxZoom: 11,
 }).setView([-33, -56], 3);
+if (getScreenWidth() > 1125) {
+  map.setMinZoom(3);
+}
 //Se agrega capa base al mapa
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
