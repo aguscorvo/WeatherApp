@@ -48,6 +48,8 @@ export let map = L.map('map', {
   maxZoom: 11,
 }).setView([-33, -56], 3);
 
+map.setMaxBounds([[-90,-180], [90,180]])
+
 if (getScreenWidth() > 1125) {
   map.setMinZoom(3);
 }
