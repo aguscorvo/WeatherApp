@@ -26,13 +26,15 @@ let searchBtn: HTMLElement = document.querySelector('.search');
 let deleteBtn: HTMLElement = document.querySelector('.delete');
 
 searchBtn.addEventListener('click', () => {
-  if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
-    getWeatherByLocation(locationInput.value);
-    updateMarkerByLocation(map, marker, locationInput.value);
-  } else {
-    deleteWeatherNode();
-    getWeatherByLocation(locationInput.value);
-    updateMarkerByLocation(map, marker, locationInput.value);
+  if(locationInput.value !== ''){
+    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    } else {
+      deleteWeatherNode();
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    }
   }
 });
 deleteBtn.addEventListener('click', (): void => deleteContent());
