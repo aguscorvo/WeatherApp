@@ -60,7 +60,7 @@ let baseMaps = {
     None: none,
 };
 //Se agrega control de capas al mapa
-L.control.layers(baseMaps).addTo(map);
+L.control.layers(baseMaps).addTo(map).expand();
 export let marker = L.marker([-33, -56]).addTo(map);
 //Se obtienen nuevos datos al hacer click en el mapa
 function getNewLocation(newPosition) {
