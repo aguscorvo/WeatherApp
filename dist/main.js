@@ -20,18 +20,10 @@ export const setWeatherNodeCounter = num => {
 export let locationInput = document.querySelector('.location');
 let searchBtn = document.querySelector('.search');
 let deleteBtn = document.querySelector('.delete');
-searchBtn.addEventListener('click', () => {
-  if (locationInput.value !== '') {
-    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
-      getWeatherByLocation(locationInput.value);
-      updateMarkerByLocation(map, marker, locationInput.value);
-    } else {
-      deleteWeatherNode();
-      getWeatherByLocation(locationInput.value);
-      updateMarkerByLocation(map, marker, locationInput.value);
-    }
-  }
+locationInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') searchWeather();
 });
+searchBtn.addEventListener('click', () => searchWeather());
 deleteBtn.addEventListener('click', () => deleteContent());
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 //Mapa
@@ -98,3 +90,15 @@ function getNewLocation(newPosition) {
   getLocationFromMap(newPosition.latlng.lat, newPosition.latlng.lng);
 }
 map.on('click', getNewLocation);
+const searchWeather = () => {
+  if (locationInput.value !== '') {
+    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    } else {
+      deleteWeatherNode();
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    }
+  }
+};

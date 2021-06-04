@@ -25,18 +25,10 @@ export let locationInput: HTMLInputElement =
 let searchBtn: HTMLElement = document.querySelector('.search');
 let deleteBtn: HTMLElement = document.querySelector('.delete');
 
-searchBtn.addEventListener('click', () => {
-  if(locationInput.value !== ''){
-    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
-      getWeatherByLocation(locationInput.value);
-      updateMarkerByLocation(map, marker, locationInput.value);
-    } else {
-      deleteWeatherNode();
-      getWeatherByLocation(locationInput.value);
-      updateMarkerByLocation(map, marker, locationInput.value);
-    }
-  }
+locationInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') searchWeather();
 });
+searchBtn.addEventListener('click', () => searchWeather());
 deleteBtn.addEventListener('click', (): void => deleteContent());
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -48,7 +40,10 @@ export let map = L.map('map', {
   maxZoom: 11,
 }).setView([-33, -56], 3);
 
-map.setMaxBounds([[-90,-180], [90,180]])
+map.setMaxBounds([
+  [-90, -180],
+  [90, 180],
+]);
 
 if (getScreenWidth() > 1125) {
   map.setMinZoom(3);
@@ -116,3 +111,16 @@ function getNewLocation(newPosition) {
 }
 
 map.on('click', getNewLocation);
+
+const searchWeather = () => {
+  if (locationInput.value !== '') {
+    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    } else {
+      deleteWeatherNode();
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
+    }
+  }
+};
