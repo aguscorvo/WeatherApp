@@ -17,24 +17,24 @@ export const spaceAvailable = (
     if (weatherNodeCounter < 2) return true;
     else return false;
   // tablet
-  if (screenWidth >= 720 && screenWidth < 1050) {
+  if (screenWidth >= 720 && screenWidth < 1110) {
     if (weatherNodeCounter < 1) return true;
     else return false;
   }
   //desktop
-  if (screenWidth >= 1050 && screenWidth < 1350) {
+  if (screenWidth >= 1110 && screenWidth < 1365) {
     if (weatherNodeCounter < 2) return true;
     else return false;
   }
-  if (screenWidth >= 1350 && screenWidth < 1650) {
+  if (screenWidth >= 1365 && screenWidth < 1650) {
     if (weatherNodeCounter < 3) return true;
     else return false;
   }
-  if (screenWidth >= 1650 && screenWidth < 1920) {
+  if (screenWidth >= 1650 && screenWidth < 1950) {
     if (weatherNodeCounter < 4) return true;
     else return false;
   }
-  if (screenWidth >= 1920) {
+  if (screenWidth >= 1950) {
     if (weatherNodeCounter < 5) return true;
     else return false;
   }
