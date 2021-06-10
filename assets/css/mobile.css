@@ -56,6 +56,53 @@ main {
   align-self: center;
 }
 
+/* SWEET ALERT */
+
+.swal2-popup {
+  font-size: 1.7rem;
+  background-image: linear-gradient(
+    to right top,
+    #19456b,
+    #124467,
+    #0b4364,
+    #054160,
+    #00405c
+  );
+}
+
+.swal2-icon.swal2-warning {
+  border-color: #ff9d4a;
+  color: #ff9d4a;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #f74141;
+}
+
+.swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+  background-color: #f74141;
+}
+
+.swal2-title {
+  color: var(--color-white);
+}
+
+.swal2-html-container {
+  color: var(--color-white);
+}
+
+.swal2-styled.swal2-confirm {
+  padding: 0px;
+  background-color: var(--color-green);
+  font-family: var(--font);
+  font-weight: bold;
+  border: var(--color-white) 2px solid;
+}
+
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: none;
+}
+
 /* NAV - SETTINGS BUTTON */
 
 nav {

@@ -32,3 +32,5 @@ export const spaceAvailable = (weatherNodeCounter, screenWidth) => {
 export const deleteValue = () => (locationInput.value = '');
 export const sweetAlertError = message =>
   Swal.fire('Oops...', message, 'error');
+export const sweetAlertWarning = message =>
+  Swal.fire('Warning', message, 'warning');

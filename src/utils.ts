@@ -41,3 +41,6 @@ export const deleteValue = () => (locationInput.value = '');
 
 export const sweetAlertError = (message: string) =>
   Swal.fire('Oops...', message, 'error');
+
+export const sweetAlertWarning = (message: string) =>
+  Swal.fire('Warning', message, 'warning');

@@ -15,7 +15,7 @@ import {
   deleteValue,
   getScreenWidth,
   spaceAvailable,
-  sweetAlertError,
+  sweetAlertWarning,
 } from './utils';
 
 export let weatherNodeCounter: number = 0;
@@ -141,7 +141,7 @@ const searchWeather = () => {
       updateMarkerByLocation(map, marker, locationInput.value);
     }
   } else {
-    sweetAlertError('Please fill the imput before searching.');
+    sweetAlertWarning('Please fill the imput before searching.');
   }
 };
 
