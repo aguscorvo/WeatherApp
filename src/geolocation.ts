@@ -6,6 +6,7 @@ import {
   weatherNodeCounter,
 } from './main';
 import { updateMarkerByGeolocation } from './map';
+import { sweetAlertError } from './utils';
 import { API_URL, API_KEY, getWeatherByLocation } from './weather';
 
 export const successCallback = position => {
@@ -18,6 +19,8 @@ export const errorCallback = error => {
   if (error.code == error.PERMISSION_DENIED) {
     console.log(error);
     console.log('deshabilitado');
+  } else if (error.code == (error.POSITION_UNAVAILABLE || error.TIMEOUT)) {
+    sweetAlertError('Position unavailable. Please try again (F5).');
   }
 };
 
@@ -45,7 +48,7 @@ export const getLocationFromMap = async (
     marker.openPopup();
   } else {
     locationInput.value = '';
-    marker.bindPopup('Undefined location. Try again.');
+    marker.bindPopup('Undefined location. Please try again.');
     marker.openPopup();
   }
 };

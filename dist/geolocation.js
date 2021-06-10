@@ -1,5 +1,6 @@
 import { locationInput, map, marker } from './main.js';
 import { updateMarkerByGeolocation } from './map.js';
+import { sweetAlertError } from './utils.js';
 import { API_URL, API_KEY, getWeatherByLocation } from './weather.js';
 export const successCallback = position => {
   console.log(position);
@@ -10,6 +11,8 @@ export const errorCallback = error => {
   if (error.code == error.PERMISSION_DENIED) {
     console.log(error);
     console.log('deshabilitado');
+  } else if (error.code == (error.POSITION_UNAVAILABLE || error.TIMEOUT)) {
+    sweetAlertError('Position unavailable. Please try again (F5).');
   }
 };
 const getLocationName = async position => {
@@ -32,7 +35,7 @@ export const getLocationFromMap = async (latitude, longitude) => {
     marker.openPopup();
   } else {
     locationInput.value = '';
-    marker.bindPopup('Undefined location. Try again.');
+    marker.bindPopup('Undefined location. Please try again.');
     marker.openPopup();
   }
 };

@@ -3,7 +3,7 @@ import {
   deleteContent,
   API_KEY,
   deleteWeatherNode,
-} from './weather';
+} from './weather.js';
 import {
   successCallback,
   errorCallback,
@@ -11,7 +11,12 @@ import {
 } from './geolocation.js';
 // import L from 'leaflet';
 import { updateMarkerByLocation } from './map.js';
-import { deleteValue, getScreenWidth, spaceAvailable } from './utils.js';
+import {
+  deleteValue,
+  getScreenWidth,
+  spaceAvailable,
+  sweetAlertError,
+} from './utils.js';
 export let weatherNodeCounter = 0;
 let comparisonEnabled = false;
 export const setWeatherNodeCounter = num => {
@@ -113,6 +118,8 @@ const searchWeather = () => {
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
     }
+  } else {
+    sweetAlertError('Please fill the imput before searching.');
   }
 };
 const changeBtnState = button => {

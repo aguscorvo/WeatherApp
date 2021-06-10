@@ -1,3 +1,4 @@
+// import Swal from 'sweetalert2';
 import { locationInput } from './main.js';
 export const roundToOneDigitAfterComma = floatNumber =>
   parseFloat((Math.round(floatNumber * 100) / 100).toFixed(1));
@@ -29,3 +30,5 @@ export const spaceAvailable = (weatherNodeCounter, screenWidth) => {
   }
 };
 export const deleteValue = () => (locationInput.value = '');
+export const sweetAlertError = message =>
+  Swal.fire('Oops...', message, 'error');

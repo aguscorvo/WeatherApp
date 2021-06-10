@@ -18,9 +18,11 @@
   "author": "Agustina Corvo <aguscorvo@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@sweetalert2/themes": "^5.0.0",
     "@types/leaflet": "^1.7.0",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
+    "sweetalert2": "^11.0.16",
     "typescript": "^4.3.2"
   },
   "devDependencies": {

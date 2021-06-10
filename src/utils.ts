@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { locationInput } from './main';
 
 export const roundToOneDigitAfterComma = (floatNumber): number =>
@@ -37,3 +38,6 @@ export const spaceAvailable = (
 };
 
 export const deleteValue = () => (locationInput.value = '');
+
+export const sweetAlertError = (message: string) =>
+  Swal.fire('Oops...', message, 'error');

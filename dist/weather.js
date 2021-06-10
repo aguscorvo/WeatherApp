@@ -1,5 +1,9 @@
 import { setWeatherNodeCounter, weatherNodeCounter } from './main.js';
-import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils.js';
+import {
+  capitalizeFirstLetter,
+  roundToOneDigitAfterComma,
+  sweetAlertError,
+} from './utils.js';
 export const API_KEY = 'af35cd595cda16b3edfc97e2a21ab394';
 export const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 const API_UNITS = 'metric';
@@ -15,6 +19,7 @@ export const getWeatherByLocation = async location => {
     weatherContainer.prepend(weatherNode);
     setWeatherNodeCounter(weatherNodeCounter + 1);
   } catch (error) {
+    sweetAlertError('Weather information unavailable. Please try again.');
     console.log(`Fetch error ${error}`);
   }
 };

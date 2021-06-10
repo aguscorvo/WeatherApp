@@ -11,7 +11,12 @@ import {
 } from './geolocation';
 import L from 'leaflet';
 import { updateMarkerByLocation } from './map';
-import { deleteValue, getScreenWidth, spaceAvailable } from './utils';
+import {
+  deleteValue,
+  getScreenWidth,
+  spaceAvailable,
+  sweetAlertError,
+} from './utils';
 
 export let weatherNodeCounter: number = 0;
 let comparisonEnabled: boolean = false;
@@ -135,6 +140,8 @@ const searchWeather = () => {
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
     }
+  } else {
+    sweetAlertError('Please fill the imput before searching.');
   }
 };
 

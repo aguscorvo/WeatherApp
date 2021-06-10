@@ -3,7 +3,11 @@ import {
   setWeatherNodeCounter,
   weatherNodeCounter,
 } from './main.js';
-import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils';
+import {
+  capitalizeFirstLetter,
+  roundToOneDigitAfterComma,
+  sweetAlertError,
+} from './utils';
 
 export const API_KEY: string = 'af35cd595cda16b3edfc97e2a21ab394';
 export const API_URL: string =
@@ -25,6 +29,7 @@ export const getWeatherByLocation = async (
     weatherContainer.prepend(weatherNode);
     setWeatherNodeCounter(weatherNodeCounter + 1);
   } catch (error) {
+    sweetAlertError('Weather information unavailable. Please try again.');
     console.log(`Fetch error ${error}`);
   }
 };
