@@ -3,7 +3,7 @@ import {
   deleteContent,
   API_KEY,
   deleteWeatherNode,
-} from './weather.js';
+} from './weather';
 import {
   successCallback,
   errorCallback,

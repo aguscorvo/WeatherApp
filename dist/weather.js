@@ -25,7 +25,8 @@ const createWeatherNode = (data, location) => {
   const title = document.createElement('h3');
   title.textContent = `Current weather in ${location}`;
   const icon = document.createElement('img');
-  icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  icon.alt = 'Weather icon';
   const description = document.createElement('p');
   description.textContent = data.weather[0].description;
   description.textContent = capitalizeFirstLetter(description.textContent);
