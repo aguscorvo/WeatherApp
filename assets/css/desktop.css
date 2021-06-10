@@ -2,6 +2,12 @@ body {
   max-width: 2040px;
 }
 
+/* NAV - SETTINGS BUTTON */
+
+nav {
+  padding: 25px var(--padding-desktop) 0 var(--padding-desktop);
+}
+
 /* INTRO CONTAINER */
 
 .intro-container {
@@ -12,9 +18,6 @@ body {
 /* WEATHER CONTAINER */
 
 .weather-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   padding: var(--padding-desktop);
 }
 

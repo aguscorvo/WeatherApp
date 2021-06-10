@@ -2,8 +2,10 @@
   --font: 'Lato', sans-serif;
   --color-white: #f8f1f1;
   --color-blue: #11698e;
+  --color-blue-hover: #2b93be;
   --color-dark-blue: #19456b;
   --color-green: #16c79a;
+  --color-green-hover: #00e6ab;
   --border-radius: 7px;
   --padding: 25px;
   --padding-tablet: 40px;
@@ -47,16 +49,33 @@ body {
 
 main {
   display: grid;
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: 50px repeat(2, auto);
   justify-content: center;
   height: 100%;
   align-self: center;
 }
 
+/* NAV - SETTINGS BUTTON */
+
+nav {
+  grid-row: 1;
+  padding: var(--padding) var(--padding) 0 var(--padding);
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav .settings {
+  background-color: var(--color-blue);
+}
+
+.settings:hover {
+  background-color: var(--color-blue-hover);
+}
+
 /* INTRO CONTAINER */
 
 .intro-container {
-  grid-row: 1/2;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   padding: var(--padding);
@@ -109,32 +128,39 @@ button {
   border-radius: var(--border-radius);
   padding: 4px;
   width: fit-content;
-  border-color: var(--color-white);
+  border: var(--color-white) 2px solid;
   width: 45px;
   height: 45px;
 }
 
-.search-container button {
+.search-container,
+.compare-container {
   margin-right: 12px;
-  background-color: var(--color-green);
-  border: var(--color-white) 2px solid;
 }
 
 button img {
   width: 30px;
 }
 
-.search:hover,
-.search:active {
-  background-color: #7cd1bc;
+.search-container button {
+  background-color: var(--color-green);
 }
 
-.delete-container button {
+.delete-container button,
+.compare-container button {
   background-color: var(--color-blue);
-  border: var(--color-white) 2px solid;
 }
 
-@media (min-width: 400px) {
+.search:hover {
+  background-color: var(--color-green-hover);
+}
+
+.delete:hover,
+.compare:hover {
+  background-color: var(--color-blue-hover);
+}
+
+@media (min-width: 485px) {
   .location {
     width: 260px;
   }
@@ -151,7 +177,7 @@ button img {
 /* WEATHER CONTAINER */
 
 .weather-container {
-  grid-row: 2/3;
+  grid-row: 3;
   height: fit-content;
   height: -moz-fit-content;
   padding: var(--padding);
@@ -222,7 +248,7 @@ button img {
 /* MAP CONTAINER */
 
 .map-container {
-  grid-row: 3/4;
+  grid-row: 4;
   height: 100%;
   width: 100vw;
   display: flex;
