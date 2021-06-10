@@ -1,3 +1,5 @@
+import { locationInput } from './main';
+
 export const roundToOneDigitAfterComma = (floatNumber): number =>
   parseFloat((Math.round(floatNumber * 100) / 100).toFixed(1));
 
@@ -24,16 +26,14 @@ export const spaceAvailable = (
     if (weatherNodeCounter < 2) return true;
     else return false;
   }
-  if (screenWidth >= 1365 && screenWidth < 1650) {
+  if (screenWidth >= 1365 && screenWidth < 1980) {
     if (weatherNodeCounter < 3) return true;
     else return false;
   }
-  if (screenWidth >= 1650 && screenWidth < 1950) {
+  if (screenWidth >= 1980) {
     if (weatherNodeCounter < 4) return true;
     else return false;
   }
-  if (screenWidth >= 1950) {
-    if (weatherNodeCounter < 5) return true;
-    else return false;
-  }
 };
+
+export const deleteValue = () => (locationInput.value = '');

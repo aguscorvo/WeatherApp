@@ -6,6 +6,7 @@
   --color-dark-blue: #19456b;
   --color-green: #16c79a;
   --color-green-hover: #00e6ab;
+  --color-active: #e6aa00;
   --border-radius: 7px;
   --padding: 25px;
   --padding-tablet: 40px;
@@ -158,6 +159,10 @@ button img {
 .delete:hover,
 .compare:hover {
   background-color: var(--color-blue-hover);
+}
+
+.compare-container .active {
+  background-color: var(--color-active);
 }
 
 @media (min-width: 485px) {

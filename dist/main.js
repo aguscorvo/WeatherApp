@@ -11,20 +11,26 @@ import {
 } from './geolocation.js';
 // import L from 'leaflet';
 import { updateMarkerByLocation } from './map.js';
-import { getScreenWidth, spaceAvailable } from './utils.js';
+import { deleteValue, getScreenWidth, spaceAvailable } from './utils.js';
 export let weatherNodeCounter = 0;
+let comparisonEnabled = false;
 export const setWeatherNodeCounter = num => {
   weatherNodeCounter = num;
   console.log(weatherNodeCounter);
 };
 export let locationInput = document.querySelector('.location');
 let searchBtn = document.querySelector('.search');
+let compareBtn = document.querySelector('.compare');
 let deleteBtn = document.querySelector('.delete');
 locationInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') searchWeather();
 });
 searchBtn.addEventListener('click', () => searchWeather());
-deleteBtn.addEventListener('click', () => deleteContent());
+compareBtn.addEventListener('click', () => changeBtnState(compareBtn));
+deleteBtn.addEventListener('click', () => {
+  deleteValue();
+  deleteContent();
+});
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 //Mapa
 export let map = L.map('map', {
@@ -92,13 +98,29 @@ function getNewLocation(newPosition) {
 map.on('click', getNewLocation);
 const searchWeather = () => {
   if (locationInput.value !== '') {
-    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+    if (
+      comparisonEnabled &&
+      spaceAvailable(weatherNodeCounter, getScreenWidth())
+    ) {
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
-    } else {
+    } else if (comparisonEnabled) {
       deleteWeatherNode();
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
+    } else {
+      deleteContent();
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
     }
+  }
+};
+const changeBtnState = button => {
+  if (button.classList.contains('active')) {
+    button.classList.remove('active');
+    comparisonEnabled = false;
+  } else {
+    button.classList.add('active');
+    comparisonEnabled = true;
   }
 };

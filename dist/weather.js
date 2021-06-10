@@ -1,8 +1,4 @@
-import {
-  locationInput,
-  setWeatherNodeCounter,
-  weatherNodeCounter,
-} from './main.js';
+import { setWeatherNodeCounter, weatherNodeCounter } from './main.js';
 import { capitalizeFirstLetter, roundToOneDigitAfterComma } from './utils.js';
 export const API_KEY = 'af35cd595cda16b3edfc97e2a21ab394';
 export const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -69,5 +65,4 @@ export const deleteContent = () => {
     weatherContainer.removeChild(toDelete);
   }
   setWeatherNodeCounter(0);
-  locationInput.value = '';
 };

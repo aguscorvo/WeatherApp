@@ -11,9 +11,10 @@ import {
 } from './geolocation';
 import L from 'leaflet';
 import { updateMarkerByLocation } from './map';
-import { getScreenWidth, spaceAvailable } from './utils';
+import { deleteValue, getScreenWidth, spaceAvailable } from './utils';
 
 export let weatherNodeCounter: number = 0;
+let comparisonEnabled: boolean = false;
 
 export const setWeatherNodeCounter = (num: number) => {
   weatherNodeCounter = num;
@@ -22,14 +23,19 @@ export const setWeatherNodeCounter = (num: number) => {
 
 export let locationInput: HTMLInputElement =
   document.querySelector('.location');
-let searchBtn: HTMLElement = document.querySelector('.search');
-let deleteBtn: HTMLElement = document.querySelector('.delete');
+let searchBtn: HTMLButtonElement = document.querySelector('.search');
+let compareBtn: HTMLButtonElement = document.querySelector('.compare');
+let deleteBtn: HTMLButtonElement = document.querySelector('.delete');
 
 locationInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') searchWeather();
 });
 searchBtn.addEventListener('click', () => searchWeather());
-deleteBtn.addEventListener('click', (): void => deleteContent());
+compareBtn.addEventListener('click', () => changeBtnState(compareBtn));
+deleteBtn.addEventListener('click', (): void => {
+  deleteValue();
+  deleteContent();
+});
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
@@ -114,13 +120,30 @@ map.on('click', getNewLocation);
 
 const searchWeather = () => {
   if (locationInput.value !== '') {
-    if (spaceAvailable(weatherNodeCounter, getScreenWidth())) {
+    if (
+      comparisonEnabled &&
+      spaceAvailable(weatherNodeCounter, getScreenWidth())
+    ) {
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
-    } else {
+    } else if (comparisonEnabled) {
       deleteWeatherNode();
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
+    } else {
+      deleteContent();
+      getWeatherByLocation(locationInput.value);
+      updateMarkerByLocation(map, marker, locationInput.value);
     }
+  }
+};
+
+const changeBtnState = (button: HTMLButtonElement) => {
+  if (button.classList.contains('active')) {
+    button.classList.remove('active');
+    comparisonEnabled = false;
+  } else {
+    button.classList.add('active');
+    comparisonEnabled = true;
   }
 };

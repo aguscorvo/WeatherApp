@@ -84,5 +84,4 @@ export const deleteContent = (): void => {
     weatherContainer.removeChild(toDelete);
   }
   setWeatherNodeCounter(0);
-  locationInput.value = '';
 };
