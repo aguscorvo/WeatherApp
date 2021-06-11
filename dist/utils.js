@@ -66,18 +66,18 @@ export const sweetAlertSettings = (comparisonEnabled, showAuto) => {
   if (comparisonEnabled) {
     if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
       weatherComparison =
-        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked disabled/></h4><p/>';
+        '<h4>Habilitar comparación de tiempo atmosférico<input type="checkbox" id="comparison-cb" checked disabled/></h4><p/>';
     } else {
       weatherComparison =
-        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
+        '<h4>Habilitar comparación de tiempo atmosférico<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
     }
   } else {
     if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
       weatherComparison =
-        '<h4>Habilitar comparación de tiempos atmosféricos<input type="checkbox" id="comparison-cb" disabled/></h4><p/>';
+        '<h4>Habilitar comparación de tiempo atmosférico<input type="checkbox" id="comparison-cb" disabled/></h4><p/>';
     } else {
       weatherComparison =
-        '<h4>Habilitar comparación de tiempos atmosféricos<input type="checkbox" id="comparison-cb"/></h4><p/>';
+        '<h4>Habilitar comparación de tiempo atmosférico<input type="checkbox" id="comparison-cb"/></h4><p/>';
     }
   }
   if (showAuto) {
