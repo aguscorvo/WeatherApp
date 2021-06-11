@@ -23,6 +23,7 @@ nav {
   grid-row: 2;
   grid-column: 1;
   padding: var(--padding-tablet);
+  margin-top: 7px;
 }
 
 /* WEATHER CONTAINER */
