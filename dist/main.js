@@ -15,6 +15,7 @@ import {
   deleteValue,
   getScreenWidth,
   spaceAvailable,
+  sweetAlertSettings,
   sweetAlertWarning,
 } from './utils.js';
 export let weatherNodeCounter = 0;
@@ -24,12 +25,16 @@ export const setWeatherNodeCounter = num => {
   console.log(weatherNodeCounter);
 };
 export let locationInput = document.querySelector('.location');
+let settingsBtn = document.querySelector('.settings');
 let searchBtn = document.querySelector('.search');
-let compareBtn = document.querySelector('.compare');
+export let compareBtn = document.querySelector('.compare');
 let deleteBtn = document.querySelector('.delete');
 locationInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') searchWeather();
 });
+settingsBtn.addEventListener('click', () =>
+  sweetAlertSettings(comparisonEnabled)
+);
 searchBtn.addEventListener('click', () => searchWeather());
 compareBtn.addEventListener('click', () => changeBtnState(compareBtn));
 deleteBtn.addEventListener('click', () => {
@@ -129,5 +134,17 @@ const changeBtnState = button => {
   } else {
     button.classList.add('active');
     comparisonEnabled = true;
+  }
+};
+export const setBtnActive = button => {
+  if (!button.classList.contains('active')) {
+    button.classList.add('active');
+    comparisonEnabled = true;
+  }
+};
+export const setBtnInactive = button => {
+  if (button.classList.contains('active')) {
+    button.classList.remove('active');
+    comparisonEnabled = false;
   }
 };

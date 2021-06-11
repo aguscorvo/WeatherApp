@@ -2,11 +2,11 @@
   --font: 'Lato', sans-serif;
   --color-white: #f8f1f1;
   --color-blue: #11698e;
-  --color-blue-hover: #2b93be;
   --color-dark-blue: #19456b;
   --color-green: #16c79a;
   --color-green-hover: #00e6ab;
-  --color-active: #e6aa00;
+  --color-compare: #e6aa00;
+  --color-delete: #ed2b19ec;
   --border-radius: 7px;
   --padding: 25px;
   --padding-tablet: 40px;
@@ -117,7 +117,7 @@ nav .settings {
 }
 
 .settings:hover {
-  background-color: var(--color-blue-hover);
+  background-color: var(--color-dark-blue);
 }
 
 /* INTRO CONTAINER */
@@ -203,13 +203,13 @@ button img {
   background-color: var(--color-green-hover);
 }
 
-.delete:hover,
-.compare:hover {
-  background-color: var(--color-blue-hover);
+.compare:hover,
+.compare-container .active {
+  background-color: var(--color-compare);
 }
 
-.compare-container .active {
-  background-color: var(--color-active);
+.delete:hover {
+  background-color: var(--color-delete);
 }
 
 @media (min-width: 485px) {

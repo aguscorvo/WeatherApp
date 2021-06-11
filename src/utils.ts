@@ -1,5 +1,10 @@
 import Swal from 'sweetalert2';
-import { locationInput } from './main';
+import {
+  compareBtn,
+  locationInput,
+  setBtnActive,
+  setBtnInactive,
+} from './main';
 
 export const roundToOneDigitAfterComma = (floatNumber): number =>
   parseFloat((Math.round(floatNumber * 100) / 100).toFixed(1));
@@ -44,3 +49,41 @@ export const sweetAlertError = (message: string) =>
 
 export const sweetAlertWarning = (message: string) =>
   Swal.fire('Warning', message, 'warning');
+
+export const sweetAlertSettings = (comparisonEnabled: boolean) => {
+  var weatherComparison: string;
+  if (comparisonEnabled) {
+    weatherComparison =
+      '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
+  } else {
+    weatherComparison =
+      '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb"/></h4><p/>';
+  }
+  Swal.fire({
+    title: 'Settings',
+    html:
+      weatherComparison +
+      `<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" /></h4>`,
+    confirmButtonText: 'confirmar',
+    preConfirm: (comparisonEnabled: boolean) => {
+      let comparison: HTMLInputElement =
+        Swal.getPopup().querySelector('#comparison-cb');
+      let show: HTMLInputElement = Swal.getPopup().querySelector(
+        '#show-automatically-cb'
+      );
+      let comparisonBoolean: boolean = comparison.checked;
+      let showBoolean: boolean = show.checked;
+      console.log(
+        'comparison = ' + comparisonBoolean + ' show = ' + showBoolean
+      );
+      return { comparisonBoolean: comparisonBoolean, showBoolean: showBoolean };
+    },
+  }).then(result => {
+    if (result.value.comparisonBoolean) {
+      setBtnActive(compareBtn);
+    } else {
+      setBtnInactive(compareBtn);
+    }
+    // Prescricao.usoCigarro = result.value.cigarro;
+  });
+};

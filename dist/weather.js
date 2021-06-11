@@ -19,7 +19,7 @@ export const getWeatherByLocation = async location => {
     weatherContainer.prepend(weatherNode);
     setWeatherNodeCounter(weatherNodeCounter + 1);
   } catch (error) {
-    sweetAlertError('Weather information unavailable. Please try again.');
+    sweetAlertError('Weather unavailable. Please try again.');
     console.log(`Fetch error ${error}`);
   }
 };
