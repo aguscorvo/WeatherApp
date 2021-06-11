@@ -127,6 +127,12 @@ nav {
   justify-content: flex-end;
 }
 
+nav .github {
+  /* background-color: var(--color-blue); */
+  background-color: #11698e00;
+  margin-right: 12px;
+}
+
 nav .settings {
   background-color: var(--color-blue);
 }
@@ -194,6 +200,14 @@ button {
   border: var(--color-white) 2px solid;
   width: 45px;
   height: 45px;
+  cursor: pointer;
+}
+
+button.github {
+  /* border: var(--color-white) 2px solid; */
+  border: none;
+  align-self: center;
+  margin-top: 14px;
 }
 
 .search-container,
@@ -203,6 +217,10 @@ button {
 
 button img {
   width: 30px;
+}
+
+button.github img {
+  width: 42px;
 }
 
 .search-container button {
