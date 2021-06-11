@@ -133,6 +133,10 @@ nav .github {
   margin-right: 12px;
 }
 
+.github:hover {
+  background-color: #11698e00;
+}
+
 nav .settings {
   background-color: var(--color-blue);
 }

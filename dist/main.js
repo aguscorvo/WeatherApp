@@ -12,6 +12,7 @@ import {
   deleteValue,
   getScreenWidth,
   spaceAvailable,
+  sweetAlertInfo,
   sweetAlertSettings,
   sweetAlertWarning,
 } from './utils.js';
@@ -34,7 +35,16 @@ settingsBtn.addEventListener('click', () =>
   sweetAlertSettings(comparisonEnabled, showAuto)
 );
 searchBtn.addEventListener('click', () => searchWeather());
-compareBtn.addEventListener('click', () => changeBtnState(compareBtn));
+compareBtn.addEventListener('click', () => {
+  //if its tablet
+  if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
+    sweetAlertInfo(
+      'Function unavailable on tablet. Please try it out on your mobile phone or pc.'
+    );
+  } else {
+    changeBtnState(compareBtn);
+  }
+});
 deleteBtn.addEventListener('click', () => {
   deleteValue();
   deleteContent();

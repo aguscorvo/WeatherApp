@@ -64,6 +64,14 @@ export const sweetAlertWarning = (message: string) =>
     showCloseButton: true,
   });
 
+export const sweetAlertInfo = (message: string) =>
+  Swal.fire({
+    heightAuto: false,
+    text: message,
+    icon: 'info',
+    showCloseButton: true,
+  });
+
 export const sweetAlertSettings = (
   comparisonEnabled: boolean,
   showAuto: boolean
@@ -72,11 +80,21 @@ export const sweetAlertSettings = (
   var weatherAuto: string;
 
   if (comparisonEnabled) {
-    weatherComparison =
-      '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
+    if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
+      weatherComparison =
+        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked disabled/></h4><p/>';
+    } else {
+      weatherComparison =
+        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
+    }
   } else {
-    weatherComparison =
-      '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb"/></h4><p/>';
+    if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
+      weatherComparison =
+        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" disabled/></h4><p/>';
+    } else {
+      weatherComparison =
+        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb"/></h4><p/>';
+    }
   }
 
   if (showAuto) {
