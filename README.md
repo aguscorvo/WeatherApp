@@ -8,7 +8,7 @@ Weather app using [Leaflet](https://leafletjs.com/) and [OpenWeatherMap API](htt
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Link](#links)
+  - [Link](#link)
 - [Our process](#our-process)
   - [Designs with Figma](#designs-with-figma)
   - [Built with](#built-with)
@@ -28,7 +28,7 @@ To run the project in your local server just clone the repo and paste this line 
 
 ### Screenshot
 
-![](./assets/sreenshot/screenshot-desktop.png)
+![](./assets/screenshot/screenshot-desktop.png)
 
 ### Link
 
@@ -40,7 +40,7 @@ To run the project in your local server just clone the repo and paste this line 
 
 ![](./assets/designs/weather-app-mobile.png)
 
-![](./assets/sreenshot/weather-app-desktop.png)
+![](./assets/designs/weather-app-desktop.png)
 
 ### Built with
 
