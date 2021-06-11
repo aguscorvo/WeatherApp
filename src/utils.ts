@@ -1,9 +1,12 @@
 import Swal from 'sweetalert2';
 import {
   compareBtn,
+  showBtn,
   locationInput,
   setBtnActive,
   setBtnInactive,
+  setBtnShowActive,
+  setBtnShowInactive
 } from './main';
 
 export const roundToOneDigitAfterComma = (floatNumber): number =>
@@ -50,8 +53,10 @@ export const sweetAlertError = (message: string) =>
 export const sweetAlertWarning = (message: string) =>
   Swal.fire('Warning', message, 'warning');
 
-export const sweetAlertSettings = (comparisonEnabled: boolean) => {
+export const sweetAlertSettings = (comparisonEnabled: boolean, showAuto: boolean) => {
   var weatherComparison: string;
+  var weatherAuto: string;
+
   if (comparisonEnabled) {
     weatherComparison =
       '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" checked/></h4><p/>';
@@ -59,18 +64,25 @@ export const sweetAlertSettings = (comparisonEnabled: boolean) => {
     weatherComparison =
       '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb"/></h4><p/>';
   }
+
+  if (showAuto) {
+    weatherAuto =
+      '<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" checked/></h4>';
+  } else {
+    weatherAuto =
+      '<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" /></h4>';
+  }
+
   Swal.fire({
     title: 'Settings',
     html:
-      weatherComparison +
-      `<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" /></h4>`,
+      weatherComparison + weatherAuto,
     confirmButtonText: 'confirmar',
     preConfirm: (comparisonEnabled: boolean) => {
       let comparison: HTMLInputElement =
         Swal.getPopup().querySelector('#comparison-cb');
-      let show: HTMLInputElement = Swal.getPopup().querySelector(
-        '#show-automatically-cb'
-      );
+      let show: HTMLInputElement =
+        Swal.getPopup().querySelector('#show-automatically-cb');
       let comparisonBoolean: boolean = comparison.checked;
       let showBoolean: boolean = show.checked;
       console.log(
@@ -83,6 +95,11 @@ export const sweetAlertSettings = (comparisonEnabled: boolean) => {
       setBtnActive(compareBtn);
     } else {
       setBtnInactive(compareBtn);
+    }
+    if (result.value.showBoolean) {
+      setBtnShowActive(showBtn);
+    } else {
+      setBtnShowInactive(showBtn);
     }
     // Prescricao.usoCigarro = result.value.cigarro;
   });

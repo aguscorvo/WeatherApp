@@ -2,7 +2,7 @@ import {
   locationInput,
   setWeatherNodeCounter,
   weatherNodeCounter,
-} from './main.js';
+} from './main';
 import {
   capitalizeFirstLetter,
   roundToOneDigitAfterComma,

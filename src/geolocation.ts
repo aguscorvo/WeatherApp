@@ -2,8 +2,6 @@ import {
   locationInput,
   map,
   marker,
-  setWeatherNodeCounter,
-  weatherNodeCounter,
 } from './main';
 import { updateMarkerByGeolocation } from './map';
 import { sweetAlertError } from './utils';
@@ -34,21 +32,4 @@ const getLocationName = async position => {
   //falta manejo de errores
 };
 
-export const getLocationFromMap = async (
-  latitude,
-  longitude
-): Promise<void> => {
-  const response = await fetch(
-    `${API_URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-  );
-  const data = await response.json();
-  if (data.sys.country !== undefined) {
-    locationInput.value = `${data.name}, ${data.sys.country}`;
-    marker.bindPopup(`${data.name}, ${data.sys.country}`);
-    marker.openPopup();
-  } else {
-    locationInput.value = '';
-    marker.bindPopup('Undefined location. Please try again.');
-    marker.openPopup();
-  }
-};
+

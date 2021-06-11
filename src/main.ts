@@ -2,12 +2,12 @@ import {
   getWeatherByLocation,
   deleteContent,
   API_KEY,
+  API_URL,
   deleteWeatherNode,
 } from './weather';
 import {
   successCallback,
   errorCallback,
-  getLocationFromMap,
 } from './geolocation';
 import L from 'leaflet';
 import { updateMarkerByLocation } from './map';
@@ -21,6 +21,7 @@ import {
 
 export let weatherNodeCounter: number = 0;
 let comparisonEnabled: boolean = false;
+let showAuto:boolean = false;
 
 export const setWeatherNodeCounter = (num: number) => {
   weatherNodeCounter = num;
@@ -32,13 +33,15 @@ export let locationInput: HTMLInputElement =
 let settingsBtn: HTMLButtonElement = document.querySelector('.settings');
 let searchBtn: HTMLButtonElement = document.querySelector('.search');
 export let compareBtn: HTMLButtonElement = document.querySelector('.compare');
+export let showBtn: HTMLButtonElement = document.querySelector('.show');
+showBtn.style.visibility = "hidden";
 let deleteBtn: HTMLButtonElement = document.querySelector('.delete');
 
 locationInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') searchWeather();
 });
 settingsBtn.addEventListener('click', () =>
-  sweetAlertSettings(comparisonEnabled)
+  sweetAlertSettings(comparisonEnabled, showAuto)
 );
 searchBtn.addEventListener('click', () => searchWeather());
 compareBtn.addEventListener('click', () => changeBtnState(compareBtn));
@@ -171,5 +174,54 @@ export const setBtnInactive = (button: HTMLButtonElement) => {
   if (button.classList.contains('active')) {
     button.classList.remove('active');
     comparisonEnabled = false;
+  }
+};
+
+export const setBtnShowActive = (button: HTMLButtonElement) => {
+  if (!button.classList.contains('active')) {
+    button.classList.add('active');
+    showAuto = true;
+  }
+};
+
+export const setBtnShowInactive = (button: HTMLButtonElement) => {
+  if (button.classList.contains('active')) {
+    button.classList.remove('active');
+    showAuto = false;
+  }
+};
+
+const getLocationFromMap = async (
+  latitude,
+  longitude
+): Promise<void> => {
+  const response = await fetch(
+    `${API_URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+  );
+  const data = await response.json();
+  if (data.sys.country !== undefined) {
+    locationInput.value = `${data.name}, ${data.sys.country}`;
+    marker.bindPopup(`${data.name}, ${data.sys.country}`);
+    marker.openPopup();
+    if (showAuto){
+      if (locationInput.value !== '') {
+        if (
+          comparisonEnabled &&
+          spaceAvailable(weatherNodeCounter, getScreenWidth())
+        ) {
+          getWeatherByLocation(locationInput.value);
+        } else if (comparisonEnabled) {
+          deleteWeatherNode();
+          getWeatherByLocation(locationInput.value);
+        } else {
+          deleteContent();
+          getWeatherByLocation(locationInput.value);
+        }
+      } 
+    }
+  } else {
+    locationInput.value = '';
+    marker.bindPopup('Undefined location. Please try again.');
+    marker.openPopup();
   }
 };
