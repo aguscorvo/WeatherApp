@@ -47,10 +47,22 @@ export const spaceAvailable = (
 export const deleteValue = () => (locationInput.value = '');
 
 export const sweetAlertError = (message: string) =>
-  Swal.fire('Oops...', message, 'error');
+  Swal.fire({
+    heightAuto: false,
+    title: 'Oops...',
+    text: message,
+    icon: 'error',
+    showCloseButton: true,
+  });
 
 export const sweetAlertWarning = (message: string) =>
-  Swal.fire('Warning', message, 'warning');
+  Swal.fire({
+    heightAuto: false,
+    title: 'Warning',
+    text: message,
+    icon: 'warning',
+    showCloseButton: true,
+  });
 
 export const sweetAlertSettings = (
   comparisonEnabled: boolean,
@@ -76,9 +88,11 @@ export const sweetAlertSettings = (
   }
 
   Swal.fire({
+    heightAuto: false,
     title: 'Settings',
     html: weatherComparison + weatherAuto,
-    confirmButtonText: 'confirmar',
+    confirmButtonText: 'OK',
+    showCloseButton: true,
     preConfirm: (comparisonEnabled: boolean) => {
       let comparison: HTMLInputElement =
         Swal.getPopup().querySelector('#comparison-cb');
@@ -93,16 +107,17 @@ export const sweetAlertSettings = (
       return { comparisonBoolean: comparisonBoolean, showBoolean: showBoolean };
     },
   }).then(result => {
-    if (result.value.comparisonBoolean) {
-      setBtnActive(compareBtn);
-    } else {
-      setBtnInactive(compareBtn);
+    if (result.isConfirmed) {
+      if (result.value.comparisonBoolean) {
+        setBtnActive(compareBtn);
+      } else {
+        setBtnInactive(compareBtn);
+      }
+      if (result.value.showBoolean) {
+        setShowActive();
+      } else {
+        setShowInactive();
+      }
     }
-    if (result.value.showBoolean) {
-      setShowActive();
-    } else {
-      setShowInactive();
-    }
-    // Prescricao.usoCigarro = result.value.cigarro;
   });
 };

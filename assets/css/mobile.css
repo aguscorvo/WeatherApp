@@ -58,7 +58,7 @@ main {
 
 /* SWEET ALERT */
 
-.swal2-popup {
+.swal2-container .swal2-popup {
   font-size: 1.7rem;
   background-image: linear-gradient(
     to right top,
@@ -85,14 +85,29 @@ main {
 
 .swal2-title {
   color: var(--color-white);
+  padding-bottom: 5px;
 }
 
-.swal2-html-container {
+.swal2-container .swal2-popup .swal2-html-container {
   color: var(--color-white);
+  text-align: center;
 }
 
-.swal2-styled.swal2-confirm {
-  padding: 0px;
+.swal2-container .swal2-popup .swal2-html-container h4 {
+  padding-bottom: 20px;
+}
+
+.swal2-container .swal2-popup .swal2-html-container h4 input {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+}
+
+.swal2-container .swal2-popup .swal2-styled.swal2-confirm {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  padding: 10px;
   background-color: var(--color-green);
   font-family: var(--font);
   font-weight: bold;

@@ -38,9 +38,21 @@ export const spaceAvailable = (weatherNodeCounter, screenWidth) => {
 };
 export const deleteValue = () => (locationInput.value = '');
 export const sweetAlertError = message =>
-  Swal.fire('Oops...', message, 'error');
+  Swal.fire({
+    heightAuto: false,
+    title: 'Oops...',
+    text: message,
+    icon: 'error',
+    showCloseButton: true,
+  });
 export const sweetAlertWarning = message =>
-  Swal.fire('Warning', message, 'warning');
+  Swal.fire({
+    heightAuto: false,
+    title: 'Warning',
+    text: message,
+    icon: 'warning',
+    showCloseButton: true,
+  });
 export const sweetAlertSettings = (comparisonEnabled, showAuto) => {
   var weatherComparison;
   var weatherAuto;
@@ -59,9 +71,11 @@ export const sweetAlertSettings = (comparisonEnabled, showAuto) => {
       '<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" /></h4>';
   }
   Swal.fire({
+    heightAuto: false,
     title: 'Settings',
     html: weatherComparison + weatherAuto,
-    confirmButtonText: 'confirmar',
+    confirmButtonText: 'OK',
+    showCloseButton: true,
     preConfirm: comparisonEnabled => {
       let comparison = Swal.getPopup().querySelector('#comparison-cb');
       let show = Swal.getPopup().querySelector('#show-automatically-cb');
@@ -73,16 +87,17 @@ export const sweetAlertSettings = (comparisonEnabled, showAuto) => {
       return { comparisonBoolean: comparisonBoolean, showBoolean: showBoolean };
     },
   }).then(result => {
-    if (result.value.comparisonBoolean) {
-      setBtnActive(compareBtn);
-    } else {
-      setBtnInactive(compareBtn);
+    if (result.isConfirmed) {
+      if (result.value.comparisonBoolean) {
+        setBtnActive(compareBtn);
+      } else {
+        setBtnInactive(compareBtn);
+      }
+      if (result.value.showBoolean) {
+        setShowActive();
+      } else {
+        setShowInactive();
+      }
     }
-    if (result.value.showBoolean) {
-      setShowActive();
-    } else {
-      setShowInactive();
-    }
-    // Prescricao.usoCigarro = result.value.cigarro;
   });
 };
