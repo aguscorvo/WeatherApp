@@ -49,7 +49,7 @@ export const deleteValue = () => (locationInput.value = '');
 export const sweetAlertError = (message: string) =>
   Swal.fire({
     heightAuto: false,
-    title: 'Oops...',
+    title: 'Ups...',
     text: message,
     icon: 'error',
     showCloseButton: true,
@@ -58,7 +58,7 @@ export const sweetAlertError = (message: string) =>
 export const sweetAlertWarning = (message: string) =>
   Swal.fire({
     heightAuto: false,
-    title: 'Warning',
+    title: 'Advertencia',
     text: message,
     icon: 'warning',
     showCloseButton: true,
@@ -90,24 +90,24 @@ export const sweetAlertSettings = (
   } else {
     if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
       weatherComparison =
-        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb" disabled/></h4><p/>';
+        '<h4>Habilitar comparación de tiempos atmosféricos<input type="checkbox" id="comparison-cb" disabled/></h4><p/>';
     } else {
       weatherComparison =
-        '<h4>Weather comparison enabled<input type="checkbox" id="comparison-cb"/></h4><p/>';
+        '<h4>Habilitar comparación de tiempos atmosféricos<input type="checkbox" id="comparison-cb"/></h4><p/>';
     }
   }
 
   if (showAuto) {
     weatherAuto =
-      '<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" checked/></h4>';
+      '<h4>Mostrar el tiempo atmosférico automáticamente<input type="checkbox" id="show-automatically-cb" checked/></h4>';
   } else {
     weatherAuto =
-      '<h4>Show weather automatically<input type="checkbox" id="show-automatically-cb" /></h4>';
+      '<h4>Mostrar el tiempo atmosférico automáticamente<input type="checkbox" id="show-automatically-cb" /></h4>';
   }
 
   Swal.fire({
     heightAuto: false,
-    title: 'Settings',
+    title: 'Configuración',
     html: weatherComparison + weatherAuto,
     confirmButtonText: 'OK',
     showCloseButton: true,

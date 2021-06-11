@@ -39,7 +39,7 @@ compareBtn.addEventListener('click', () => {
   //if its tablet
   if (getScreenWidth() >= 720 && getScreenWidth() < 1050) {
     sweetAlertInfo(
-      'Function unavailable on tablet. Please try it out on your mobile phone or pc.'
+      'Función no disponible en tablet. Por favor intente en su teléfono móvil o computadora.'
     );
   } else {
     changeBtnState(compareBtn);
@@ -98,11 +98,11 @@ let wind = L.tileLayer(
 );
 let none = L.tileLayer('');
 let baseMaps = {
-  Temperature: temp,
-  'Wind speed': wind,
-  Clouds: clouds,
-  Precipitation: precipitation,
-  None: none,
+  Temperatura: temp,
+  Viento: wind,
+  Nubes: clouds,
+  Precipitaciones: precipitation,
+  Ninguna: none,
 };
 //Se agrega control de capas al mapa
 L.control.layers(baseMaps).addTo(map).expand();
@@ -132,7 +132,7 @@ const searchWeather = () => {
       updateMarkerByLocation(map, marker, locationInput.value);
     }
   } else {
-    sweetAlertWarning('Please fill the imput before searching.');
+    sweetAlertWarning('Por favor escriba la ubicación deseada.');
   }
 };
 const changeBtnState = button => {
@@ -193,7 +193,7 @@ const getLocationFromMap = async (latitude, longitude) => {
     }
   } else {
     locationInput.value = '';
-    marker.bindPopup('Undefined location. Please try again.');
+    marker.bindPopup('Ubicación no definida. Por favor inténtalo de nuevo.');
     marker.openPopup();
   }
 };
