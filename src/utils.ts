@@ -1,12 +1,11 @@
 import Swal from 'sweetalert2';
 import {
   compareBtn,
-  showBtn,
   locationInput,
   setBtnActive,
   setBtnInactive,
-  setBtnShowActive,
-  setBtnShowInactive
+  setShowActive,
+  setShowInactive,
 } from './main';
 
 export const roundToOneDigitAfterComma = (floatNumber): number =>
@@ -53,7 +52,10 @@ export const sweetAlertError = (message: string) =>
 export const sweetAlertWarning = (message: string) =>
   Swal.fire('Warning', message, 'warning');
 
-export const sweetAlertSettings = (comparisonEnabled: boolean, showAuto: boolean) => {
+export const sweetAlertSettings = (
+  comparisonEnabled: boolean,
+  showAuto: boolean
+) => {
   var weatherComparison: string;
   var weatherAuto: string;
 
@@ -75,14 +77,14 @@ export const sweetAlertSettings = (comparisonEnabled: boolean, showAuto: boolean
 
   Swal.fire({
     title: 'Settings',
-    html:
-      weatherComparison + weatherAuto,
+    html: weatherComparison + weatherAuto,
     confirmButtonText: 'confirmar',
     preConfirm: (comparisonEnabled: boolean) => {
       let comparison: HTMLInputElement =
         Swal.getPopup().querySelector('#comparison-cb');
-      let show: HTMLInputElement =
-        Swal.getPopup().querySelector('#show-automatically-cb');
+      let show: HTMLInputElement = Swal.getPopup().querySelector(
+        '#show-automatically-cb'
+      );
       let comparisonBoolean: boolean = comparison.checked;
       let showBoolean: boolean = show.checked;
       console.log(
@@ -97,9 +99,9 @@ export const sweetAlertSettings = (comparisonEnabled: boolean, showAuto: boolean
       setBtnInactive(compareBtn);
     }
     if (result.value.showBoolean) {
-      setBtnShowActive(showBtn);
+      setShowActive();
     } else {
-      setBtnShowInactive(showBtn);
+      setShowInactive();
     }
     // Prescricao.usoCigarro = result.value.cigarro;
   });

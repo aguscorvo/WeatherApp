@@ -5,10 +5,7 @@ import {
   API_URL,
   deleteWeatherNode,
 } from './weather';
-import {
-  successCallback,
-  errorCallback,
-} from './geolocation';
+import { successCallback, errorCallback } from './geolocation';
 import L from 'leaflet';
 import { updateMarkerByLocation } from './map';
 import {
@@ -21,7 +18,7 @@ import {
 
 export let weatherNodeCounter: number = 0;
 let comparisonEnabled: boolean = false;
-let showAuto:boolean = false;
+let showAuto: boolean = false;
 
 export const setWeatherNodeCounter = (num: number) => {
   weatherNodeCounter = num;
@@ -33,8 +30,6 @@ export let locationInput: HTMLInputElement =
 let settingsBtn: HTMLButtonElement = document.querySelector('.settings');
 let searchBtn: HTMLButtonElement = document.querySelector('.search');
 export let compareBtn: HTMLButtonElement = document.querySelector('.compare');
-export let showBtn: HTMLButtonElement = document.querySelector('.show');
-showBtn.style.visibility = "hidden";
 let deleteBtn: HTMLButtonElement = document.querySelector('.delete');
 
 locationInput.addEventListener('keypress', e => {
@@ -177,24 +172,19 @@ export const setBtnInactive = (button: HTMLButtonElement) => {
   }
 };
 
-export const setBtnShowActive = (button: HTMLButtonElement) => {
-  if (!button.classList.contains('active')) {
-    button.classList.add('active');
+export const setShowActive = () => {
+  if (!showAuto) {
     showAuto = true;
   }
 };
 
-export const setBtnShowInactive = (button: HTMLButtonElement) => {
-  if (button.classList.contains('active')) {
-    button.classList.remove('active');
+export const setShowInactive = () => {
+  if (showAuto) {
     showAuto = false;
   }
 };
 
-const getLocationFromMap = async (
-  latitude,
-  longitude
-): Promise<void> => {
+const getLocationFromMap = async (latitude, longitude): Promise<void> => {
   const response = await fetch(
     `${API_URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
   );
@@ -203,7 +193,7 @@ const getLocationFromMap = async (
     locationInput.value = `${data.name}, ${data.sys.country}`;
     marker.bindPopup(`${data.name}, ${data.sys.country}`);
     marker.openPopup();
-    if (showAuto){
+    if (showAuto) {
       if (locationInput.value !== '') {
         if (
           comparisonEnabled &&
@@ -217,7 +207,7 @@ const getLocationFromMap = async (
           deleteContent();
           getWeatherByLocation(locationInput.value);
         }
-      } 
+      }
     }
   } else {
     locationInput.value = '';
