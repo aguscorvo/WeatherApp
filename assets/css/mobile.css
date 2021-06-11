@@ -93,8 +93,14 @@ main {
   text-align: center;
 }
 
+.swal2-container .swal2-popup .swal2-html-container p {
+  width: 0;
+}
+
 .swal2-container .swal2-popup .swal2-html-container h4 {
   padding-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .swal2-container .swal2-popup .swal2-html-container h4 input {
