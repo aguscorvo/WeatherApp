@@ -23,6 +23,8 @@ export const updateMarkerByLocation = async (
     const data = await response.json();
     map.setView([data.coord.lat, data.coord.lon]);
     marker.setLatLng([data.coord.lat, data.coord.lon]);
+    marker.bindPopup(`${data.name}, ${data.sys.country}`);
+    marker.openPopup();
   } catch (error) {
     console.log(`Fetch error ${error}`);
   }
