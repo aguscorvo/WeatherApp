@@ -144,20 +144,14 @@ const searchWeather = () => {
     ) {
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
-      marker.bindPopup(locationInput.value);
-      marker.openPopup();
     } else if (comparisonEnabled) {
       deleteWeatherNode();
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
-      marker.bindPopup(locationInput.value);
-      marker.openPopup();
     } else {
       deleteContent();
       getWeatherByLocation(locationInput.value);
       updateMarkerByLocation(map, marker, locationInput.value);
-      marker.bindPopup(locationInput.value);
-      marker.openPopup();
     }
   } else {
     sweetAlertWarning('Please fill the imput before searching.');

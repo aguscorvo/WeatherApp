@@ -1,6 +1,6 @@
 import { getWeatherByLocation, deleteContent, API_KEY, API_URL, deleteWeatherNode, } from './weather.js';
 import { successCallback, errorCallback } from './geolocation.js';
-//import L from 'leaflet.js';
+//import L from 'leaflet';
 import { updateMarkerByLocation } from './map.js';
 import { deleteValue, getScreenWidth, spaceAvailable, sweetAlertInfo, sweetAlertSettings, sweetAlertWarning, } from './utils.js';
 export let weatherNodeCounter = 0;
@@ -88,22 +88,16 @@ const searchWeather = () => {
             spaceAvailable(weatherNodeCounter, getScreenWidth())) {
             getWeatherByLocation(locationInput.value);
             updateMarkerByLocation(map, marker, locationInput.value);
-            marker.bindPopup(locationInput.value);
-            marker.openPopup();
         }
         else if (comparisonEnabled) {
             deleteWeatherNode();
             getWeatherByLocation(locationInput.value);
             updateMarkerByLocation(map, marker, locationInput.value);
-            marker.bindPopup(locationInput.value);
-            marker.openPopup();
         }
         else {
             deleteContent();
             getWeatherByLocation(locationInput.value);
             updateMarkerByLocation(map, marker, locationInput.value);
-            marker.bindPopup(locationInput.value);
-            marker.openPopup();
         }
     }
     else {
