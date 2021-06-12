@@ -1,3 +1,4 @@
+import { sweetAlertError } from './utils';
 import { API_URL, API_KEY } from './weather';
 
 export const updateMarkerByGeolocation = (
@@ -26,6 +27,6 @@ export const updateMarkerByLocation = async (
     marker.bindPopup(`${data.name}, ${data.sys.country}`);
     marker.openPopup();
   } catch (error) {
-    console.log(`Fetch error ${error}`);
+    sweetAlertError('Please try again.');
   }
 };

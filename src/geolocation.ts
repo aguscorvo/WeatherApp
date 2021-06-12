@@ -4,16 +4,12 @@ import { sweetAlertError } from './utils';
 import { API_URL, API_KEY, getWeatherByLocation } from './weather';
 
 export const successCallback = position => {
-  console.log(position);
   getLocationName(position);
   updateMarkerByGeolocation(map, marker, position);
 };
 
 export const errorCallback = error => {
-  if (error.code == error.PERMISSION_DENIED) {
-    console.log(error);
-    console.log('deshabilitado');
-  } else if (error.code == (error.POSITION_UNAVAILABLE || error.TIMEOUT)) {
+  if (error.code == (error.POSITION_UNAVAILABLE || error.TIMEOUT)) {
     sweetAlertError(
       'Ubicación no disponible. Por favor inténtalo de nuevo (F5).'
     );

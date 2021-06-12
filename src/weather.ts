@@ -25,7 +25,6 @@ export const getWeatherByLocation = async (
       `${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}&lang=${API_LANG}`
     );
     const data: JSON = await response.json();
-    console.log(data);
     const weatherNode: HTMLElement = createWeatherNode(data, location);
     weatherContainer.prepend(weatherNode);
     setWeatherNodeCounter(weatherNodeCounter + 1);
@@ -33,7 +32,6 @@ export const getWeatherByLocation = async (
     sweetAlertError(
       'Tiempo atmosférico no disponible. Por favor inténtalo de nuevo.'
     );
-    console.log(`Fetch error ${error}`);
   }
 };
 
@@ -46,7 +44,7 @@ const createWeatherNode = (
   container.className = 'container';
 
   const title: HTMLHeadingElement = document.createElement('h3');
-  title.textContent = `El tiempo ahora en ${location}`;
+  title.textContent = `El tiempo en ${location}`;
   const icon: HTMLImageElement = document.createElement('img');
   icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   icon.alt = 'Weather icon';

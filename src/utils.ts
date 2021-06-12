@@ -119,9 +119,6 @@ export const sweetAlertSettings = (
       );
       let comparisonBoolean: boolean = comparison.checked;
       let showBoolean: boolean = show.checked;
-      console.log(
-        'comparison = ' + comparisonBoolean + ' show = ' + showBoolean
-      );
       return { comparisonBoolean: comparisonBoolean, showBoolean: showBoolean };
     },
   }).then(result => {
