@@ -24,13 +24,11 @@ export const getWeatherByLocation = async (
       `${API_URL}q=${location}&appid=${API_KEY}&units=${API_UNITS}`
     );
     const data: JSON = await response.json();
-    console.log(data);
     const weatherNode: HTMLElement = createWeatherNode(data, location);
     weatherContainer.prepend(weatherNode);
     setWeatherNodeCounter(weatherNodeCounter + 1);
   } catch (error) {
     sweetAlertError('Weather unavailable. Please try again.');
-    console.log(`Fetch error ${error}`);
   }
 };
 

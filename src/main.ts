@@ -21,10 +21,8 @@ export let weatherNodeCounter: number = 0;
 let comparisonEnabled: boolean = false;
 let showAuto: boolean = false;
 
-export const setWeatherNodeCounter = (num: number) => {
-  weatherNodeCounter = num;
-  console.log(weatherNodeCounter);
-};
+export const setWeatherNodeCounter = (num: number) =>
+  (weatherNodeCounter = num);
 
 export let locationInput: HTMLInputElement =
   document.querySelector('.location');
