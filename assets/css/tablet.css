@@ -10,6 +10,14 @@ main {
   grid-template-rows: 50px 250px auto;
 }
 
+/* SWEET ALERT */
+
+.swal2-container .swal2-popup .swal2-html-container h4 input {
+  width: 25px;
+  height: 25px;
+  margin-left: 20px;
+}
+
 /* NAV - SETTINGS BUTTON */
 
 nav {
